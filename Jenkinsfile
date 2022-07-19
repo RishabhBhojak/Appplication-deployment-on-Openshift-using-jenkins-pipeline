@@ -52,7 +52,10 @@ pipeline {
         sh 'oc login --token=sha256~9S6qtXdODoROTgiOlmMyan06scnReUj_gkBI7VxoFTI --server=https://c115-e.us-south.containers.cloud.ibm.com:32528'
         sh 'oc new-project myloadaaplication'
         sh 'oc project myloadaaplication'
-        sh 'oc apply -f deployments'
+        sh 'oc apply -f mongodb-secret.yaml'
+        sh 'oc apply -f mongodb-deployment.yaml'
+        sh 'oc apply -f mongodb-configmap.yaml'
+        sh 'oc apply -f loadapp-deployment.yaml'
        
       }
     
