@@ -49,7 +49,7 @@ pipeline {
 
     stage('deployment') {
       steps {
-        sh 'oc login --token=sha256~lA2yP6kMsPhV2ZqwZWvhET7DRq5z2mQbLfAlln-Hk08 --server=https://api.ibmrosa-sp-0.otqj.p1.openshiftapps.com:6443'
+        sh 'oc login --token=sha256~9S6qtXdODoROTgiOlmMyan06scnReUj_gkBI7VxoFTI --server=https://c115-e.us-south.containers.cloud.ibm.com:32528'
         sh 'oc new-project myloadaaplication'
         sh 'oc project myloadaaplication'
         sh 'oc appy -f deployments'
