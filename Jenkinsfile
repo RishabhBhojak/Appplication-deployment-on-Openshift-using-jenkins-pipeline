@@ -54,7 +54,7 @@ pipeline {
         sh 'oc project myloadaaplication'
         sh 'oc apply -f mongodb-secret.yaml'
         sh 'oc apply -f mongodb-deployment.yaml'
-        sh 'oc apply -f mongodb-configmap.yaml'
+        sh 'oc apply -f mongo-configmap.yaml'
         sh 'oc apply -f loadapp-deployment.yaml'
        
       }
