@@ -52,8 +52,8 @@ pipeline {
         sh 'oc login --token=sha256~9S6qtXdODoROTgiOlmMyan06scnReUj_gkBI7VxoFTI --server=https://c115-e.us-south.containers.cloud.ibm.com:32528'
         sh 'oc new-project myloadaaplication'
         sh 'oc project myloadaaplication'
-        sh 'oc appy -f deployments'
-        
+        sh 'oc apply-f deployments'
+       
       }
     
 
