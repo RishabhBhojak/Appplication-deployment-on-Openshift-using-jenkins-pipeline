@@ -51,6 +51,7 @@ pipeline {
       steps {
        
         sh '''
+          oc version
           oc login --token=sha256~eEtl5W78AJIcFPwiwz3LuSWYmSC0fMPVTINk1cBFvuA --server=https://c115-e.us-south.containers.cloud.ibm.com:32528
           oc new-project nodeapplication
           oc project nodeapplication
