@@ -47,36 +47,36 @@ pipeline {
       }
     }
 
-    stage('Openshift Login') {
+    stage('deployment') {
       steps {
         sh 'oc login --token=sha256~9S6qtXdODoROTgiOlmMyan06scnReUj_gkBI7VxoFTI --server=https://c115-e.us-south.containers.cloud.ibm.com:32528'
-        sh 'oc new-project nodeapplication'     
-      }
-
-    stage('Database Deployment') {
-      steps {
+        sh 'oc new-project nodeapplication'
         sh 'oc project nodeapplication'
         sh 'oc apply -f mongodb-secret.yaml'
         sh 'oc apply -f mongo-configmap.yaml'
         sh 'oc apply -f mongodb-deployment.yaml'
+        
+       
+      }
+    
+    }
+    
+    stage('sleep') {
+      steps {
+        sh 'sleep 150'
+       
+      }
+    
+    }
+
+    stage('deployment') {
+      steps {
         sh 'oc apply -f loadapp-deployment.yaml'
        
       }
-    }
-
-    stage('Sleep') {
-      steps {
-        sh 'sleep 150'
-      }
-    }
     
-    stage('Loadapplication Deployment') {
-      steps {
-        sh 'oc apply -f loadapp-deployment.yaml'
-      }
     }
 
   }
   
-}
 }
