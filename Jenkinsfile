@@ -6,7 +6,7 @@ pipeline {
         
   }      
   stages {
-    stage("verify required tooling") {
+    stage("Verify required tooling") {
       steps {
         sh '''
           docker version
@@ -21,7 +21,7 @@ pipeline {
         sh 'docker system prune -a --volumes -f'
       }
     }
-    stage('kill port') {
+    stage('Kill port') {
       steps {
         sh '''
           alias kill3000="fuser -k -n tcp 3000"
@@ -35,23 +35,23 @@ pipeline {
       }
     }  
 
-    stage('login to dockerhub') {
+    stage('Login to dockerhub') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
 
-    stage('push images to dockerhub') {
+    stage('Push images to dockerhub') {
       steps {
         sh 'docker push rishabhbhojak/mynodeimagefresh'
       }
     }
 
-    stage('deployment of Mongodb') {
+    stage('Deploy Mongodb') {
       steps {
        
         sh '''
-          oc login --token=sha256~9S6qtXdODoROTgiOlmMyan06scnReUj_gkBI7VxoFTI --server=https://c115-e.us-south.containers.cloud.ibm.com:32528
+          oc login --token=sha256~eEtl5W78AJIcFPwiwz3LuSWYmSC0fMPVTINk1cBFvuA --server=https://c115-e.us-south.containers.cloud.ibm.com:32528
           oc new-project nodeapplication
           oc project nodeapplication
           oc apply -f mongodb-secret.yaml
@@ -64,7 +64,7 @@ pipeline {
     
     }
     
-    stage('sleep') {
+    stage('Sleep') {
       steps {
         sh 'sleep 150'
        
@@ -72,7 +72,7 @@ pipeline {
     
     }
 
-    stage('deployment application') {
+    stage('Deploy Application') {
       steps {
         sh 'oc apply -f loadapp-deployment.yaml'
        
