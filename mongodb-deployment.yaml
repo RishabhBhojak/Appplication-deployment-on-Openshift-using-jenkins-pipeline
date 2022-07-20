@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongo-pcvol
-  namespace: app3300
+  namespace: nodeapplication
 spec:
   accessModes:
     - ReadWriteOnce
