@@ -23,8 +23,10 @@ pipeline {
     }
     stage('kill port') {
       steps {
-        sh 'alias kill3000="fuser -k -n tcp 3000"'
-        sh 'alias kill80="fuser -k -n tcp 80"'  
+        sh '''
+          alias kill3000="fuser -k -n tcp 3000"'
+          alias kill80="fuser -k -n tcp 80"
+        '''  
       }
     }
     stage('Build') {
