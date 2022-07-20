@@ -62,11 +62,12 @@ pipeline {
         sh 'oc apply -f loadapp-deployment.yaml'
        
       }
-      
+
     stage('Sleep') {
       steps {
         sh 'sleep 150'
       }
+    }
     
     stage('Loadapplication Deployment') {
       steps {
@@ -81,3 +82,4 @@ pipeline {
   }
   
 }
+ 
