@@ -12,7 +12,7 @@ pipeline {
           docker version
           docker info
           docker-compose --version 
-          oc version 
+           
         '''
       }
     }
