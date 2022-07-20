@@ -69,7 +69,7 @@ pipeline {
     
     }
 
-    stage('deployment') {
+    stage('deployment application') {
       steps {
         sh 'oc apply -f loadapp-deployment.yaml'
        
