@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: load-app
-        image: rishabhbhojak/mynodeimagefresh
+        image: rishabhbhojak/persistent
         ports:
           - containerPort: 3000
         env:
