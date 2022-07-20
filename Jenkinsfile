@@ -21,14 +21,7 @@ pipeline {
         sh 'docker system prune -a --volumes -f'
       }
     }
-    stage('Kill port') {
-      steps {
-        sh '''
-          alias kill3000="fuser -k -n tcp 3000"
-          alias kill80="fuser -k -n tcp 80"
-        '''  
-      }
-    }
+    
     stage('Build') {
       steps {
         sh ' docker build -t rishabhbhojak/mynodeimagefresh .' 
@@ -51,7 +44,6 @@ pipeline {
       steps {
        
         sh '''
-          oc version
           oc login --token=sha256~eEtl5W78AJIcFPwiwz3LuSWYmSC0fMPVTINk1cBFvuA --server=https://c115-e.us-south.containers.cloud.ibm.com:32528
           oc new-project nodeapplication
           oc project nodeapplication
@@ -76,6 +68,7 @@ pipeline {
     stage('Deploy Application') {
       steps {
         sh 'oc apply -f loadapp-deployment.yaml'
+        sh 'oc apply -f routedeployment.yaml'
        
       }
     
