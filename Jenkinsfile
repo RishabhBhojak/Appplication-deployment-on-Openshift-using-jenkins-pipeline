@@ -21,14 +21,8 @@ pipeline {
         sh 'docker system prune -a --volumes -f'
       }
     }
-    stage('Kill port') {
-      steps {
-        sh '''
-          alias kill3000="fuser -k -n tcp 3000"
-          alias kill80="fuser -k -n tcp 80"
-        '''  
-      }
-    }
+    
+    
     stage('Build') {
       steps {
         sh ' docker build -t rishabhbhojak/mynodeimagefresh .' 
