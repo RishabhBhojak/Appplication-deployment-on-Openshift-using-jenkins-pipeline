@@ -62,6 +62,7 @@ pipeline {
         sh 'oc apply -f loadapp-deployment.yaml'
        
       }
+    }
 
     stage('Sleep') {
       steps {
@@ -73,13 +74,9 @@ pipeline {
       steps {
         sh 'oc apply -f loadapp-deployment.yaml'
       }
-
-
-
-
     }
 
   }
   
 }
- 
+}
