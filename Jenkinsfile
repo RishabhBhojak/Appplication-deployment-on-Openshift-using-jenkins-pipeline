@@ -6,14 +6,13 @@ pipeline {
         
   }      
   stages {
-    stage("verify tooling") {
+    stage("verify required tooling") {
       steps {
         sh '''
           docker version
           docker info
           docker-compose --version 
-          curl --version
-          
+          oc version 
         '''
       }
     }
@@ -25,8 +24,7 @@ pipeline {
     stage('kill port') {
       steps {
         sh 'alias kill3000="fuser -k -n tcp 3000"'
-        sh 'alias kill80="fuser -k -n tcp 80"'
-         
+        sh 'alias kill80="fuser -k -n tcp 80"'  
       }
     }
     stage('Build') {
@@ -35,13 +33,13 @@ pipeline {
       }
     }  
 
-    stage('login') {
+    stage('login to dockerhub') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
 
-    stage('push images') {
+    stage('push images to dockerhub') {
       steps {
         sh 'docker push rishabhbhojak/mynodeimagefresh'
       }
