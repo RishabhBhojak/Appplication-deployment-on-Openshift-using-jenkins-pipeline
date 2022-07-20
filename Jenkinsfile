@@ -49,6 +49,7 @@ pipeline {
 
     stage('deployment') {
       steps {
+       
         sh 'oc login --token=sha256~9S6qtXdODoROTgiOlmMyan06scnReUj_gkBI7VxoFTI --server=https://c115-e.us-south.containers.cloud.ibm.com:32528'
         sh 'oc new-project nodeapplication'
         sh 'oc project nodeapplication'
